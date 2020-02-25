@@ -164,6 +164,7 @@ int main(int argc, char *argv[])
         die("USAGE: ex17 <dbfile> <action> [action params]");
 
     char *filename = argv[1];
+    if(!(strlen(filename) > 4 && !strcmp(filename + strlen(filename) - 4, ".fdb")))die("please enter the database name in '.fdb'");
     char action = argv[2][0];
     struct Connection *conn = Database_open(filename, action);
     int id = 0;
@@ -173,6 +174,7 @@ int main(int argc, char *argv[])
 
     switch (action) {
         case 'c':
+            
             Database_create(conn);
             Database_write(conn);
             break;
